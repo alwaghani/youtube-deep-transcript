@@ -43,28 +43,18 @@ transcript/
 
 ---
 
-## 🚀 Cara Penggunaan
+## 🚀 Cara Penggunaan (AI-Powered)
 
-### 1. Menggunakan CLI Langsung (*Command Line Interface*)
-Ekstrak takarir video YouTube langsung ke format Markdown:
-```bash
-python3 run.py "https://youtu.be/nz665d6jcAQ"
+Cukup buka repositori ini dengan **Claude Code**, lalu berikan tautan (*link*) video YouTube yang ingin dibedah:
+
+```text
+Bro, tolong bedah dan transkrip video ini: https://youtu.be/LINK_VIDEO
 ```
 
-Ekstrak langsung ke format data mentah JSON:
-```bash
-python3 run.py "https://youtu.be/nz665d6jcAQ" --json-only
-```
+### Apa yang Otomatis Dikerjakan AI?
+1. ⚡ **Mengekstrak Takarir:** Menyedot takarir resmi atau otomatis tanpa perlu mengunduh file video.
+2. 👥 **Pemisahan Pembicara (*Speaker Diarization*):** Mengenali dan membedakan giliran bicara antar-tokoh secara utuh (*verbatim*).
+3. 🧭 **Ringkasan Eksekutif (*Timeline Breakdown*):** Memetakan topik obrolan per babak waktu agar alur video 1–2 jam bisa dipahami dalam hitungan menit.
+4. 📚 **Kamus Istilah Awam (*Layman Glossary*):** Menerjemahkan istilah teknis, singkatan asing, dan teori rumit ke analogi sehari-hari yang mudah dicerna.
 
-Menentukan bahasa takarir (*subtitles*) pilihan:
-```bash
-python3 run.py "https://youtu.be/nz665d6jcAQ" --lang "id,en" --out "outputs/podcast-baru.md"
-```
-
----
-
-### 2. Menggunakan Asisten Claude Code (Direkomendasikan)
-Kamu cukup memberikan tautan video YouTube di dalam Claude Code:
-> *"Bro, tolong bedah dan transkrip video ini: [LINK_YOUTUBE]"*
-
-Claude Code akan otomatis memanggil skill `youtube-deep-transcript`, menjalankan pemisahan pembicara (*speaker diarization*), serta menyusun ringkasan eksekutif dan kamus istilah awam secara otomatis.
+File hasil akhir akan otomatis tersimpan rapi di dalam folder `outputs/` dalam format Markdown.
