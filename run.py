@@ -77,7 +77,7 @@ def main():
         f.write(doc)
 
     print(f"[✓] Dokumen transkrip tersimpan di: {out_file}")
-    print(f"[i] Untuk pemisahan nama penutur (speaker diarization) dan penjelasan awam, jalankan via Claude Code skill.")
+    print(f"[i] Untuk pemisahan nama penutur (speaker diarization) dan penjelasan awam, jalankan via AI Agent (Claude Code, Cursor, Codex, dll) mengikuti panduan di AGENTS.md.")
 
 if __name__ == "__main__":
     main()

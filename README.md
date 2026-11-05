@@ -26,6 +26,7 @@ transcript/
 ├── .claude/
 │   └── skills/
 │       └── youtube-deep-transcript/  # Skill Claude Code terintegrasi
+├── AGENTS.md                    # Panduan standar multi-agent (Cursor, Windsurf, Roo, dll.)
 ├── run.py                       # CLI Runner utama
 ├── requirements.txt             # Dependensi Python
 ├── .gitignore                   # Aturan pengabaian file Git
@@ -43,18 +44,36 @@ transcript/
 
 ---
 
-## 🚀 Cara Penggunaan (AI-Powered)
+## 🚀 Cara Penggunaan
 
-Cukup buka repositori ini dengan **Claude Code**, lalu berikan tautan (*link*) video YouTube yang ingin dibedah:
+### 1. Menggunakan AI Agent (Rekomendasi)
+Repositori ini dirancang **Agent-Agnostic** (kompatibel dengan semua AI Agent seperti **Claude Code, Cursor, Windsurf, Roo Code, Codex, Aider**, dsb.).
 
+Cukup buka repositori ini di AI Assistant pilihanmu, lalu berikan perintah:
 ```text
 Bro, tolong bedah dan transkrip video ini: https://youtu.be/LINK_VIDEO
 ```
 
-### Apa yang Otomatis Dikerjakan AI?
+AI Agent akan otomatis membaca panduan di `AGENTS.md` (atau `.claude/skills/` jika memakai Claude Code) untuk:
 1. ⚡ **Mengekstrak Takarir:** Menyedot takarir resmi atau otomatis tanpa perlu mengunduh file video.
 2. 👥 **Pemisahan Pembicara (*Speaker Diarization*):** Mengenali dan membedakan giliran bicara antar-tokoh secara utuh (*verbatim*).
 3. 🧭 **Ringkasan Eksekutif (*Timeline Breakdown*):** Memetakan topik obrolan per babak waktu agar alur video 1–2 jam bisa dipahami dalam hitungan menit.
 4. 📚 **Kamus Istilah Awam (*Layman Glossary*):** Menerjemahkan istilah teknis, singkatan asing, dan teori rumit ke analogi sehari-hari yang mudah dicerna.
 
 File hasil akhir akan otomatis tersimpan rapi di dalam folder `outputs/` dalam format Markdown.
+
+---
+
+### 2. Menggunakan CLI Langsung (*Standalone CLI*)
+Kamu juga bisa mengekstrak takarir secara cepat tanpa AI melalui terminal:
+
+```bash
+# Ekstraksi takarir video langsung ke format Markdown:
+python3 run.py "https://youtu.be/LINK_VIDEO"
+
+# Ekstraksi ke format mentah JSON (cocok diumpankan ke AI/skrip lain):
+python3 run.py "https://youtu.be/LINK_VIDEO" --json-only
+
+# Menentukan bahasa takarir (*subtitles*) pilihan:
+python3 run.py "https://youtu.be/LINK_VIDEO" --lang "id,en" --out "outputs/podcast-baru.md"
+```
