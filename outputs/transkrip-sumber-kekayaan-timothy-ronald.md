@@ -1,10 +1,12 @@
 # Transkrip Dialog: Ternak Uang Talks: Sumber Kekayaan Timothy Ronald
 
+[![Thumbnail Banner](https://i.ytimg.com/vi/UmSgGDLfuxY/maxresdefault.jpg)](https://www.youtube.com/watch?v=UmSgGDLfuxY)
+
 - **Channel (Saluran)**: Ternak Uang
 - **Host (Pemandu Acara)**: Lael (COO Ternak Uang)
 - **Guest (Bintang Tamu)**: Timothy Ronald (Co-founder Ternak Uang / Investor)
 - **Durasi**: 01:43:16
-- **URL Video**: https://youtu.be/UmSgGDLfuxY
+- **URL Video**: https://www.youtube.com/watch?v=UmSgGDLfuxY
 
 ---
 

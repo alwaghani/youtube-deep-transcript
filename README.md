@@ -6,10 +6,14 @@ Repositori (*repository*) ini adalah mesin otomatis untuk mengekstrak, membersih
 
 ## 🌟 Keunggulan Utama
 1. **Ekstraksi Cepat & Ringan:** Mengambil takarir (*captions/subtitles*) dalam hitungan detik tanpa perlu mengunduh file video utuh.
-2. **Pembersihan Teks Otomatis:** Membuang tag HTML dan menduplikasi teks berulang khas takarir bergulir (*rolling captions*) YouTube.
-3. **Pemisahan Pembicara (*Speaker Diarization*):** Mengelompokkan setiap kalimat ke nama narasumber aslinya secara utuh (*verbatim*).
-4. **Ringkasan Eksekutif (*Timeline Summary*):** Menyajikan peta pembahasan berbabak waktu sehingga alur percakapan 1–2 jam bisa dipahami dalam beberapa menit.
-5. **Kamus Istilah Awam (*Layman Glossary*):** Menerjemahkan istilah teknis, singkatan asing, dan teori rumit ke analogi sehari-hari yang mudah dicerna.
+2. **Pembersih URL Cerdas & Dukungan Shorts:** Otomatis membuang parameter pelacak kotor (`?si=...`, `&t=...`) dan mendukung URL YouTube Shorts, mobile, embed, maupun tautan pendek `youtu.be`.
+3. **Pembersihan Teks Otomatis:** Membuang tag HTML dan menduplikasi teks berulang khas takarir bergulir (*rolling captions*) YouTube.
+4. **Cadangan Takarir Cerdas (*Smart Fallback*):** Otomatis beralih ke takarir asli audio (*-orig*) bila bahasa utama tidak tersedia guna mencegah blokir YouTube (*HTTP 429*).
+5. **Deteksi Bab Otomatis (*Chapters*):** Membaca bab resmi YouTube atau daftar penanda waktu di deskripsi untuk dijadikan daftar isi video.
+6. **Header Visual Kaya:** Menampilkan gambar sampul (*clickable thumbnail banner*), tanggal tayang, durasi, total penayangan, dan tautan kanal.
+7. **Pemisahan Pembicara (*Speaker Diarization*):** Mengelompokkan setiap kalimat ke nama narasumber aslinya secara utuh (*verbatim*).
+8. **Ringkasan Eksekutif (*Timeline Summary*):** Menyajikan peta pembahasan berbabak waktu sehingga alur percakapan 1–2 jam bisa dipahami dalam beberapa menit.
+9. **Kamus Istilah Awam (*Layman Glossary*):** Menerjemahkan istilah teknis, singkatan asing, dan teori rumit ke analogi sehari-hari yang mudah dicerna.
 
 ---
 

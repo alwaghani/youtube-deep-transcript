@@ -1,10 +1,13 @@
 # Transkrip Dialog: Masa Depan DUNIA Bakal Hancur?! Ini Jalan Keluarnya... #TheInnerCircle ft. Timothy Ronald
 
-- **Channel (Saluran)**: Leo Giovanni
+[![Thumbnail Banner](https://i.ytimg.com/vi_webp/nz665d6jcAQ/maxresdefault.webp)](https://www.youtube.com/watch?v=nz665d6jcAQ)
+
+- **Channel (Saluran)**: [Leo Giovanni](https://www.youtube.com/@Leo_giovannii)
 - **Host (Pemandu Acara)**: Leo Giovanni
 - **Guest (Narasumber / Tamu)**: Timothy Ronald
+- **Tanggal Tayang**: 4 November 2026
 - **Durasi**: ~2 Jam 2 Menit (122 Menit)
-- **URL Video**: https://youtu.be/nz665d6jcAQ
+- **URL Video**: https://www.youtube.com/watch?v=nz665d6jcAQ
 
 ---
 

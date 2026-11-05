@@ -1,6 +1,7 @@
 """
 Subtitle & Metadata Extractor using yt-dlp and Node.js runtime.
-Includes YouTube chapter parsing and smart subtitle fallback.
+Includes YouTube chapter parsing, smart subtitle fallback,
+URL sanitization (with Shorts support), and rich metadata extraction.
 """
 
 import os
@@ -13,6 +14,29 @@ import glob
 def run_cmd(cmd):
     p = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return p.returncode, p.stdout, p.stderr
+
+def sanitize_youtube_url(url):
+    """
+    Cleans raw YouTube URLs (strips tracking parameters, converts Shorts, mobile,
+    and shortened youtu.be URLs into canonical watch URLs).
+    Returns (canonical_url, video_id).
+    """
+    url = url.strip()
+    # Check if raw 11-char ID
+    if re.match(r'^[a-zA-Z0-9_-]{11}$', url):
+        return f"https://www.youtube.com/watch?v={url}", url
+
+    patterns = [
+        r'(?:youtu\.be\/|v\/|u\/\w\/|embed\/|shorts\/)([a-zA-Z0-9_-]{11})',
+        r'[?&]v=([a-zA-Z0-9_-]{11})'
+    ]
+    for p in patterns:
+        m = re.search(p, url)
+        if m:
+            vid = m.group(1)
+            return f"https://www.youtube.com/watch?v={vid}", vid
+
+    return url, None
 
 def to_seconds(ts_str):
     parts = ts_str.split(':')
@@ -82,20 +106,27 @@ def get_best_available_subtitle_langs(meta):
 
 def extract_subtitles(url, sub_langs="id-orig,id,en", output_json=None):
     """
-    Downloads captions and metadata from YouTube via yt-dlp without downloading video,
-    deduplicates rolling caption tags, parses chapters, and chunks conversation.
+    Downloads captions and rich metadata from YouTube via yt-dlp without downloading video,
+    sanitizes URL, deduplicates rolling caption tags, parses chapters, and chunks conversation.
     Includes smart fallback to any available subtitle language if requested language is missing.
     """
+    clean_url, video_id = sanitize_youtube_url(url)
+
     # 1. Fetch metadata
-    meta_cmd = ["yt-dlp", "--js-runtimes", "node", "-j", url]
+    meta_cmd = ["yt-dlp", "--js-runtimes", "node", "-j", clean_url]
     code, stdout, stderr = run_cmd(meta_cmd)
     if code != 0 or not stdout.strip():
         print(f"Error fetching metadata: {stderr}", file=sys.stderr)
         return None
 
     meta = json.loads(stdout.strip())
+    vid = video_id or meta.get("id", "")
     title = meta.get("title", "")
     channel = meta.get("channel", "")
+    channel_url = meta.get("uploader_url") or meta.get("channel_url", "")
+    upload_date = meta.get("upload_date", "")
+    view_count = meta.get("view_count")
+    thumbnail = meta.get("thumbnail") or (f"https://i.ytimg.com/vi/{vid}/maxresdefault.jpg" if vid else "")
     duration = meta.get("duration", 0)
     duration_str = meta.get("duration_string", "")
     description = meta.get("description", "")
@@ -125,7 +156,7 @@ def extract_subtitles(url, sub_langs="id-orig,id,en", output_json=None):
             "--sub-lang", lang_query,
             "--sub-format", "vtt",
             "-o", f"{temp_prefix}.%(ext)s",
-            url
+            clean_url
         ]
         run_cmd(dl_cmd)
         return glob.glob(f"{temp_prefix}*.vtt")
@@ -216,11 +247,16 @@ def extract_subtitles(url, sub_langs="id-orig,id,en", output_json=None):
 
     result = {
         "metadata": {
+            "id": vid,
             "title": title,
             "channel": channel,
+            "channel_url": channel_url,
+            "upload_date": upload_date,
+            "view_count": view_count,
+            "thumbnail": thumbnail,
             "duration_seconds": duration,
             "duration_string": duration_str,
-            "url": url,
+            "url": clean_url,
             "chapters": chapters,
             "description": description[:1000]
         },
